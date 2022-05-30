@@ -1,0 +1,24 @@
+.template {
+    display: none;
+}
+
+.comments {
+    background: rgb(217, 200, 255);
+    margin:auto;
+    max-width: 400px;
+    padding: 16px;
+}
+
+.comments__entry {
+    border-bottom: 1px solid rgb(100, 87, 126);
+    padding: 4px;
+
+    .author {
+        display:block;
+        text-align:right;
+    }
+}
+
+.comments__entry:last-child {
+    border:0;
+}
