@@ -5,7 +5,7 @@ const comment_template = comment_block.querySelector('.template');
 
 form.onsubmit = function (event) {
     event.preventDefault();
-    xhttp.postForm(this, function(response){
+    xhttp.postForm(this, function (response) {
         const data = new FormData(form);
         addComment(data.get('author'), data.get('message'));
     });
