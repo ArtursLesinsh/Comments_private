@@ -2,12 +2,16 @@ const form = document.getElementById('comments_form');
 const comment_block = document.querySelector('.comments');
 const comment_template = comment_block.querySelector('.template');
 
+xhttp.get('api.php?name=get-comments', function (response) {
+    for (let comment of response.comments) {
+        addComment(comment.author, comment.message);
+    }
+})
 
 form.onsubmit = function (event) {
     event.preventDefault();
     xhttp.postForm(this, function (response) {
-        const data = new FormData(form);
-        addComment(data.get('author'), data.get('message'));
+        addComment(response.author, response.message);
     });
 };
 
