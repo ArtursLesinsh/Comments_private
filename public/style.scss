@@ -24,6 +24,16 @@ form {
         margin-top: 20px;
     }
 }
+.comment_first_block {
+    display:flex;
+    justify-content:space-between;
+    margin-bottom: 32px;
+
+    .message {
+        margin:0;
+        white-space: pre;
+    }
+}
 
 input[type=text], textarea {
     margin-bottom: 20px;
