@@ -22,9 +22,7 @@ function addComment(id, author, message){
     new_comment.querySelector('.author').textContent = author;
     new_comment.dataset.id = id;
 
-    const delete_btn = new_comment.querySelector('.delete');
-
-    delete_btn.onclick = function (event) {
+    new_comment.querySelector('.delete').onclick = function (event) {
         const data = new FormData();
         data.set('id', id);
 
