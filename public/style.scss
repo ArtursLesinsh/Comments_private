@@ -70,3 +70,19 @@ input[type=text], textarea {
 .comments__entry:last-child {
     border:0;
 }
+
+.popup {
+    background: rgba(0, 0, 0, 0.50);
+    width:100vw;
+    height:100vh;
+    position:fixed;
+    top:0;
+    left:0;
+    display:none;
+    align-items:center;
+
+    form {
+        margin:auto;
+        width: 100%;
+    }
+}

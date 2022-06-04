@@ -1,6 +1,9 @@
 const form = document.getElementById('comments_form');
+const popup = document.querySelector('.popup');
+const form_update = document.getElementById('comments_update_form')
 const comment_block = document.querySelector('.comments');
 const comment_template = comment_block.querySelector('.template');
+
 
 xhttp.get('api.php?name=get-comments', function (response) {
     for (let comment of response.comments) {
@@ -12,6 +15,17 @@ form.onsubmit = function (event) {
     event.preventDefault();
     submitForm(this);
 };
+
+form_update.onsubmit = function (event) {
+    event.preventDefault();
+    xhttp.postForm(form_update, function (response) {
+        popup.style.display = 'none';
+        
+        const update_comment = document.querySelector('[data-id="' + response.id + '"]');
+        update_comment.querySelector('.message').textContent = response.comment.message;
+        update_comment.querySelector('.author').textContent = response.comment.author;
+    });
+}
 
 function submitForm (form) {
     xhttp.postForm(form, function (response) {
@@ -32,6 +46,18 @@ function addComment(id, author, message){
 
         xhttp.post('api.php?name=delete-comment', data, function (response) {
             new_comment.remove();
+        })
+    };
+
+    new_comment.querySelector('.edit').onclick = function (event) {
+        const data = new FormData();
+        data.set('id', id);
+
+        xhttp.post('api.php?name=get-comment', data, function (response) {
+            popup.style.display = 'flex';
+            form_update.querySelector('[name="id"]').value = response.comment.id;
+            form_update.querySelector('[name="author"]').value = response.comment.author;
+            form_update.querySelector('[name="message"]').value = response.comment.message;
         })
     };
     
@@ -64,3 +90,9 @@ form.querySelector('input').onkeydown = function (event) {
     event.preventDefault();
     };
 }
+
+popup.onclick = function(event) {
+    if (event.target == this) {
+        this.style.display = 'none';
+    }
+};
