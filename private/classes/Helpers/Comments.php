@@ -12,9 +12,18 @@ class Comments
         $this->db_comments = new DB('comments');
     }
     public function getAll() {
+        $result = $this->db_comments->getAll();
+
+        if ($result === false) {
+            return[
+                'status' => false,
+                'error_msg' => $this->db_comments->getError()
+            ];
+
+        }
         return [
             'status' => true,
-            'comments' => $this->db_comments->getAll()
+            'comments' => $result
         ];
     }
 
