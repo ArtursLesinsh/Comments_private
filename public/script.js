@@ -15,7 +15,7 @@ xhttp.get('api.php?name=getAll-comment', function (response) {
 
 xhttp.get('api.php?name=getAll-image', function (response) {
     for (let image of response.image) {
-        addBackgroundImage('../private/uploads/image_' + image.id + '.png');
+        addBackgroundImage('endpoint.php?name=png&id=' + image.id);
     }
 });
 
@@ -80,6 +80,7 @@ form.querySelector('textarea').onkeydown = function (event) {
 };
 
 function addBackgroundImage (src) {
+   
     const new_image = image_template.cloneNode();
     new_image.classList.remove('template');
     new_image.src = src;
