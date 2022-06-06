@@ -15,7 +15,7 @@ body {
 }
 
 .template {
-    display: none;
+    display:none;
 }
 
 .top_navigation {
@@ -35,36 +35,25 @@ form {
     display: flex;
     flex-direction:column;
     margin:auto;
-    max-width: 400px;
-    padding: 16px;
-    border-radius: 4px;
-    margin-bottom: 20px;
+    max-width:25rem;
+    padding:1rem;
+    border-radius: 0.25rem;
+    margin-bottom:20px;
 
     button {
         background: rgb(237, 209, 31);
-        border-radius: 4px;
-        border: 0;
-        padding: 8px;
-        margin-top: 20px;
+        border-radius: 0.25rem;
+        border:0;
+        padding:8px;
+        margin-top:20px;
     }
 }
-.comment_first_block {
-    display:flex;
-    justify-content:space-between;
-    margin-bottom: 32px;
-
-    .message {
-        margin:0;
-        white-space: pre;
-    }
-}
-
 input[type=text], textarea {
-    margin-bottom: 20px;
+    margin-bottom:20px;
     background: #fff6c2;
     border: 3px solid rgb(237, 209, 31);
-    border-radius: 4px;
-    padding: 8px;
+    border-radius: 0.25rem;
+    padding:8px;
 }
 
 #comments_form {
@@ -74,16 +63,27 @@ input[type=text], textarea {
     }
 }
 
+.comment_first_block {
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:2rem;
+
+    .message {
+        margin:0;
+        white-space: pre;
+    }
+}
+
 .comments {
     background: rgb(217, 200, 255);
     margin:auto;
-    max-width: 400px;
-    padding: 16px;
+    max-width:25rem;
+    padding:1rem;
 }
 
 .comments__entry {
     border-bottom: 1px solid rgb(100, 87, 126);
-    padding: 4px;
+    padding: 0.25rem;
 
     .author {
         display:block;
@@ -96,7 +96,7 @@ input[type=text], textarea {
 }
 
 .popup {
-    background: rgba(0, 0, 0, 0.50);
+    background: rgba(0, 0, 0, 0.48);
     width:100vw;
     height:100vh;
     position:fixed;
@@ -106,7 +106,19 @@ input[type=text], textarea {
     align-items:center;
 
     form {
-        margin:auto;
+        margin:0 auto;
         width: 100%;
     }
+}
+
+.image_wraper {
+    margin:5px;
+    display:inline-block;
+    position:relative;
+}
+
+.image_wraper .delete {
+    position:absolute;
+    top:5px;
+    right:5px;
 }
