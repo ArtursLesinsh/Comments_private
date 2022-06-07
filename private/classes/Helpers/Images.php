@@ -55,6 +55,29 @@ class Images
         ];   
     }
 
+    public function delete () {
+        if (
+            !isset($_POST['id']) || !is_string($_POST['id'])
+        ) {
+            return ['status' => false];
+        }
+
+        $id = (int) $_POST['id'];
+        $file_name = UPLOAD_DIR . "image_$id.png";
+        if (file_exists($file_name)) {
+            unlink($file_name);
+        }
+
+        if (!$this->db_images->deleteEntry($id)) {
+            return ['status' => false];
+        }
+
+        return [
+            'status' => true,
+            'message' => 'image has been deleted'
+        ];
+    }
+
     private function addToDB(string $author, string $image_name) {
         return $this->db_images->addEntry([
             'author' => trim($author),

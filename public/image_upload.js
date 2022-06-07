@@ -34,6 +34,11 @@ function displayImage(id) {
 }
 
 function deleteImage (event) {
+    const btn = this;
     const id = this.dataset.id;
-    console.log(id);
+    const data = new FormData();
+    data.set('id', id);
+    xhttp.post('api.php?object=image&action=delete', data, function (response) {
+        btn.parentNode.remove();
+    });
 }

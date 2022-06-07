@@ -4,6 +4,7 @@ include __DIR__ . '/../private/bootstrap.php';
 
 use Helpers\Comments;
 use Helpers\Images;
+use Helpers\Batch;
 
 header('Content-Type: application/json');
 $output = ['status' => false];
@@ -16,16 +17,21 @@ if (
 
     $supported_objects_and_actions = [
         'comment' => ['add', 'update', 'getAll', 'delete', 'get'],
-        'image' => ['upload', 'getAll']
-    ];
+        'image' => ['upload', 'getAll', 'delete'],
+        'batch' => ['getAll']
+        ];
+        $helper_names = [
+            'comment' => 'Comments',
+            'image' => 'Images',
+            'batch' => 'Batch'
+        ];
 
     if (
         array_key_exists($object_name, $supported_objects_and_actions) &&
         in_array($action_name, $supported_objects_and_actions[$object_name])
-    ) {
-        $helper = ($object_name == 'comment') 
-            ? new Comments()
-            : new Images();
+    ) {       
+        $class_name = 'Helpers\\' . $helper_names[$object_name];
+        $helper = new $class_name();
         $output = $helper->{$action_name}();
     }
 }

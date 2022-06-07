@@ -7,17 +7,14 @@ const comment_template = comment_block.querySelector('.template');
 const background_container = document.querySelector('.background_container');
 const image_template = background_container.querySelector('.template');
 
-xhttp.get('api.php?object=comment&action=getAll', function (response) {
+xhttp.get('api.php?object=batch&action=getAll', function (response) {
+    for (let image of response.images) {
+         addBackgroundImage('endpoint.php?name=png&id=' + image.id);
+    }
     for (let comment of response.comments) {
         addComment(comment.id, comment.author, comment.message);
     }
-});
-
-xhttp.get('api.php?object=image&action=getAll', function (response) {
-   for (let image of response.images) {
-        addBackgroundImage('endpoint.php?name=png&id=' + image.id);
-   }
-});
+ });
 
 form.onsubmit = function (event) {
     event.preventDefault();
